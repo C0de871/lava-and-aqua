@@ -1,0 +1,18 @@
+16 11
+4 5
+4 3
+3
+8 1
+14 1
+9 9
+E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W
+E:W E:. E:. E:. E:. E:. E:. E:W E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:. E:. E:. E:. E:. E:. E:W E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:. E:. E:. E:. E:. E:. E:W E:. E:. E:. E:. E:. E:W E:C32 E:W
+E:W E:. E:. E:. E:. E:. E:W L:. E:W E:. E:. E:. E:. E:W L:. E:W
+E:W E:. E:S E:. E:. E:. E:C15 E:C15 E:C15 E:. E:. E:. E:S E:. E:C34 E:W
+E:W E:. E:. E:. E:. E:. E:W A:. E:W E:. E:. E:. E:. E:W A:. E:W
+E:W E:. E:. E:. E:. E:. E:. E:C11 E:W E:. E:. E:. E:. E:W E:W E:W
+E:W E:. E:. E:. E:. E:. E:. E:. E:W E:. E:. E:. E:. E:C40 L:. E:W
+E:W E:. E:. E:. E:. E:. E:. E:W E:W E:. E:. E:. E:. E:C40 L:. E:W
+E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W

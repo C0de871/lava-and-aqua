@@ -1,0 +1,15 @@
+16 11
+11 5
+2 2
+0
+E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W
+E:W E:. E:. E:. E:W E:. E:. E:. E:. E:. E:. E:. E:W A:. E:W E:W
+E:W E:. E:. E:. E:W E:. E:. E:. E:. E:. E:S E:. E:W E:C13 E:W E:W
+E:W E:. E:. E:. E:W E:. E:. E:. E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:. E:W E:W E:W E:W E:P E:. E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:. E:C34 L:. E:C28 E:. E:. E:C28 E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:. E:W E:W E:W E:W E:P E:. E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:. E:. E:. E:W E:. E:. E:. E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:. E:. E:. E:C34 E:. E:. E:. E:. E:. E:S E:. E:. E:. E:. E:W
+E:W E:. E:. E:. E:W E:. E:. E:. E:. E:. E:. E:. E:. E:. E:. E:W
+E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W
