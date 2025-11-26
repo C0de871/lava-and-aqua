@@ -2,10 +2,12 @@ from models.bfs_player import AiPlayer
 
 from models.human_player import HumanPlayer
 
+
 class PlayerFactory:
 
-    def getPlayer(self, playerType: str):
-        print(playerType)
+    @classmethod
+    def getPlayer(cls, playerType: str):
+
         if playerType == "human":
             return HumanPlayer()
         elif playerType == "ai":

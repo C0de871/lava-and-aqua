@@ -93,11 +93,11 @@ Each cell: `ground:entity`
 1
 5 5
 W:W W:W W:W W:W W:W W:W W:W W:W W:W W:W W:W W:W
-W:W E:. E:. E:. E:. E:. E:. E:. E:. E:. E:. W:W
-W:W E:. E:. E:. L:. L:. L:. E:. E:. E:. E:. W:W
-W:W E:. E:. E:. L:. L:. L:. E:. E:S E:. W:W
-W:W E:. E:. A:. A:. A:. E:. E:. E:. E:. E:. W:W
-W:W E:. E:. E:. E:. E:. E:. E:. E:. E:. E:. W:W
+W:W . . . . . . . . . . W:W
+W:W . . . L L L . . . . W:W
+W:W . . . L L L . S . W:W
+W:W . . A A A . . . . . W:W
+W:W . . . . . . . . . . W:W
 W:W W:W W:W W:W W:W W:W W:W W:W W:W W:W W:W W:W
 ```
 

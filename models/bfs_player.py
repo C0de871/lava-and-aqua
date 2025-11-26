@@ -1,17 +1,19 @@
 
-from copy import deepcopy
 from dataclasses import dataclass
+import time
 
 import pygame
 
-from models.board import Board
 from models.player import Player
 from models.position import Position
 from utils.tree import Node, QueueFrontier
+from views.console_renderer import ConsoleRenderer
 
 
 @dataclass(init=False)
 class AiPlayer(Player):
+
+    player_type = "Ai"
 
     def __init__(self, position: Position = Position(0, 0)):
         super().__init__(position)
@@ -19,37 +21,10 @@ class AiPlayer(Player):
         self.current_index = 0   # Track position in the solution
         self.is_path_calculated = False
 
-    def get_next_action(self, event, board: Board):
+    def clone(self):
+        return AiPlayer(self.position.clone())
 
-        # Initialize frontier to just the starting position
-        start = Node(state=board, parent=None, action=None)
-        frontier = QueueFrontier()
-        frontier.add(start)
-
-        # Initialize an empty explored set
-        explored = set()
-
-        # TODO
-        while not frontier.empty():
-            # Choose a node from the frontier
-            node = frontier.remove()
-            # Mark node as explored
-            explored.add(node.state)
-
-            actions = board.get_available_actions(node.state)
-            for action in actions:
-                new_board = deepcopy(board)
-                new_board.update(action)
-                child = Node(state=new_board, parent=node, action=action)
-                if (child.state.is_gate_reached()):
-                    while child.parent != None and child.parent.state != child.state:
-                        self.solution_path.append(child.action)
-                        child = child.parent
-                    self.solution_path.reverse()
-                if (child.state not in explored):
-                    frontier.add(child)
-
-
+    def get_next_action(self, event):
         if event.type != pygame.KEYDOWN:
             return []
 
@@ -71,15 +46,45 @@ class AiPlayer(Player):
 
         return []
 
-    def set_solution_path(self, path):
-        """
-        Set the AI's solution path.
+    def solve(self, board):
+        start_time = time.time()
+        start = Node(state=board, parent=None, action=None)
+        frontier = QueueFrontier()
+        frontier.add(start)
+        explored = set()
+        while not frontier.empty():
+            node = frontier.remove()
 
-        Args:
-            path: List of Direction enum values representing the path to goal
-        """
-        self.solution_path = path
-        self.current_index = 0
+            if node.state.h in explored:
+                continue
+
+            explored.add(node.state.h)
+            actions = node.state.get_available_actions(
+                node.parent.state if node.parent is not None else None, node.action)
+            for action in actions:
+                new_board = node.state.transition_model(action)
+                # ConsoleRenderer().render(new_board,2)
+                if new_board.is_player_touch_lava_or_wall():
+                    continue
+
+                if new_board.is_gate_reached():
+                    # Build solution path
+                    path = []
+                    current = Node(state=new_board, parent=node, action=action)
+                    while current.parent is not None:
+                        path.append(current.action)
+                        current = current.parent
+                    self.solution_path = path[::-1]
+                    self.is_path_calculated = True
+                    print(f"visited state: {len(explored)}")
+                    print(f"generated state: {len(frontier.frontier_hashes)}")
+                    end_time = time.time()
+                    return (end_time-start_time, self.solution_path, len(explored), len(frontier.frontier_hashes))
+
+                if new_board.h not in explored and frontier.contains_state(new_board.h):
+                    child = Node(state=new_board, parent=node, action=action)
+                    frontier.add(child)
+        print("No solution found")
 
     def reset_progress(self):
         """Reset the AI's progress through the solution"""

@@ -7,9 +7,13 @@ class Position:
 
     __x: int = field()
     __y: int = field()
+
     def __init__(self, x: int, y: int):
         self.__x = x
         self.__y = y
+
+    def clone(self):
+        return Position(self.x, self.y)
 
     @property
     def x(self):

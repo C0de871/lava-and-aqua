@@ -9,6 +9,7 @@ class Player(ABC):
 
     position: Position = field()
     isAlive: bool = field()
+    player_type: str = field()
 
     def __init__(self, position: Position = Position(0, 0)):
 
@@ -16,7 +17,7 @@ class Player(ABC):
         self.isAlive = True
 
     @abstractmethod
-    def get_next_action(self, event, board):
+    def get_next_action(self, event):
         """
         Get the next action(s) based on an event.
 
@@ -34,3 +35,9 @@ class Player(ABC):
     def revive(self):
         self.isAlive = True
 
+    @abstractmethod
+    def clone(self):
+        pass
+
+    def set_pos(self, position: Position):
+        self.position = position

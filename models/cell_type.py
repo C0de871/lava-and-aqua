@@ -1,0 +1,10 @@
+
+# ? lava = 'l'
+# ? aqua = 'a'
+# ? wall = 'w'
+# ? stone = 's'
+# ? counter = 'c'
+# ? empty = '.'
+# ? permeable = 'p'
+# ? permeable aqua = 'pa'
+# ? permeable lava = 'pl'

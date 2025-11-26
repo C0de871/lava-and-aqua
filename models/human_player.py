@@ -4,12 +4,17 @@ import pygame
 
 from models.direction_enum import Direction
 from models.player import Player
+from models.position import Position
 
 
 @dataclass(init=False)
 class HumanPlayer(Player):
+    player_type = 'Human'
 
-    def get_next_action(self, event, board):
+    def clone(self):
+        return HumanPlayer(self.position.clone())
+
+    def get_next_action(self, event):
         """
         Process keyboard input and return a list with one direction.
 

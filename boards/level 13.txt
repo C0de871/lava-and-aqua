@@ -8,14 +8,14 @@
 11 5
 7 8
 8 8
-E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W
-E:W E:. E:W L:. L:. L:. L:. L:. L:. L:. L:. L:. L:. E:W E:. E:W
-E:W E:. E:W L:. L:. L:. L:. L:. L:. L:. L:. L:. L:. E:W E:. E:W
-E:W E:. E:W L:. L:. E:S E:S E:S E:S E:S E:S L:. L:. E:W E:. E:W
-E:W E:. E:W L:. L:. E:S E:. E:. E:. E:. E:S L:. L:. E:W E:. E:W
-E:W A:. E:W L:. L:. E:S E:. E:. E:. E:. E:S L:. L:. E:W A:. E:W
-E:W E:. E:W L:. L:. E:S E:. E:. E:. E:. E:S L:. L:. E:W E:. E:W
-E:W E:. E:W L:. L:. E:S E:S E:S E:S E:S E:S L:. L:. E:W E:. E:W
-E:W E:. E:W L:. L:. L:. L:. L:. L:. L:. L:. L:. L:. E:W E:. E:W
-E:W E:. E:W L:. L:. L:. L:. L:. L:. L:. L:. L:. L:. E:W E:. E:W
-E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W E:W
+W W W W W W W W W W W W W W W W
+W . W L L L L L L L L L L W . W
+W . W L L L L L L L L L L W . W
+W . W L L S S S S S S L L W . W
+W . W L L S . . . . S L L W . W
+W A W L L S . . . . S L L W A W
+W . W L L S . . . . S L L W . W
+W . W L L S S S S S S L L W . W
+W . W L L L L L L L L L L W . W
+W . W L L L L L L L L L L W . W
+W W W W W W W W W W W W W W W W

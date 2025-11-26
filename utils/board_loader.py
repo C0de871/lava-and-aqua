@@ -3,14 +3,9 @@ Board Loader - Parses board files and creates Board objects
 """
 
 from models.board import Board
-from models.cell import Cell
+from models.player import Player
 from models.position import Position
-from models.empty import Empty
-from models.lava import Lava
-from models.aqua import Aqua
-from models.solid_wall import SolidWall
-from models.count_down_wall import CountDownWall
-from models.stone import Stone
+from utils.zobrist_hash import Zobrist
 
 
 class BoardLoader:
@@ -37,14 +32,14 @@ class BoardLoader:
     - 'S' = Stone
     - 'C<n>' = CountDownWall with count n
 
-    Example cell: "E:." = Empty ground, no entity
-    Example cell: "L:." = Lava ground, no entity
-    Example cell: "E:W" = Empty ground, solid wall
+    Example cell: "." = Empty ground, no entity
+    Example cell: "L" = Lava ground, no entity
+    Example cell: "W" = Empty ground, solid wall
     Example cell: "A:P" = Aqua ground, permeable wall
-    Example cell: "E:C3" = Empty ground, countdown wall with 3
+    Example cell: "C3" = Empty ground, countdown wall with 3
     """
 
-    def load_from_file(self, filepath, player):
+    def load_from_file(self, filepath, player: Player):
         """Load board from file"""
         with open(filepath, 'r') as f:
             lines = [line.strip() for line in f.readlines() if line.strip()]
@@ -58,6 +53,7 @@ class BoardLoader:
         # Parse player position
         player_x, player_y = map(int, lines[idx].split())
         player_pos = Position(player_x, player_y)
+        player.set_pos(player_pos)
         idx += 1
 
         # Parse gate position
@@ -89,59 +85,23 @@ class BoardLoader:
 
             row = []
             for x, cell_str in enumerate(row_data):
-                cell = self._parse_cell(cell_str, x, y)
-                row.append(cell)
+                # ? Parse: W, ., S, P, C, L, A
+                row.append(cell_str)
 
             grid.append(row)
             idx += 1
+        Zobrist.initTables(height, width)
+        h = Zobrist.computeHash(grid,keys,player_pos)
 
         # Create board
         board = Board(
             row=height,
             col=width,
-            player_pos=player_pos,
             player=player,
             gate_pos=gate_pos,
             grid=grid,
+            h=h,
             keys=keys
         )
 
         return board
-
-    def _parse_cell(self, cell_str, x, y):
-        """Parse a single cell string"""
-        parts = cell_str.split(':')
-        if len(parts) != 2:
-            raise ValueError(f"Invalid cell format at ({x},{y}): {cell_str}")
-
-        ground_char, entity_char = parts
-
-        # Parse ground
-        if ground_char == 'E':
-            ground = Empty()
-        elif ground_char == 'L':
-            ground = Lava()
-        elif ground_char == 'A':
-            ground = Aqua()
-        else:
-            raise ValueError(
-                f"Unknown ground type at ({x},{y}): {ground_char}")
-
-        # Parse entity
-        entity = None
-        if entity_char == '.':
-            entity = None
-        elif entity_char == 'W':
-            entity = SolidWall(is_permeable=False)
-        elif entity_char == 'P':
-            entity = SolidWall(is_permeable=True)
-        elif entity_char == 'S':
-            entity = Stone()
-        elif entity_char.startswith('C'):
-            count = int(entity_char[1:])
-            entity = CountDownWall(count)
-        else:
-            raise ValueError(
-                f"Unknown entity type at ({x},{y}): {entity_char}")
-
-        return Cell(ground, entity)
